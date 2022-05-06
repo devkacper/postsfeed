@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\User;
 
-class PostController extends Controller
+class UserController extends Controller
 {
     /**
-     * Return post view blade.
+     * Return user view blade.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index() {
-        $posts = Post::paginate(5);
-        return view('post', compact('posts'));
+        $users = User::paginate(5);
+        return view('user', compact('users'));
     }
 }
