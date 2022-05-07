@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container">
-        <div class="row">
+        <div class="row mb-5">
             @foreach($posts as $post)
                 <div class="col-12 py-3 border-bottom border-secondary border-1">
                     <h2 class="d-block">{{ $post->title }}</h2>
