@@ -3,46 +3,46 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
-     * Return data of specific post.
+     * Return data of specific comment.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
-        $post = Post::where('id', $id)->get()->first();
+        $comment = Comment::where('id', $id)->get()->first();
 
         return response([
             'status' => 200,
             'post' => [
-                'id' => $post->id,
-                'title' => $post->title,
-                'content' => $post->content,
-                'author' => $post->author,
-                'created_at' => $post->created_at,
-                'updated_at' => $post->created_at
+                'id' => $comment->id,
+                'post_id' => $comment->post_id,
+                'content' => $comment->content,
+                'author' => $comment->author,
+                'created_at' => $comment->created_at,
+                'updated_at' => $comment->created_at
             ]
         ]);
     }
 
     /**
-     * Store post in database.
+     * Store comment in database.
      *
      * @param Request $request
      * @return void
      */
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->author = $request->author;
-        $post->save();
+        $comment = new Comment();
+        $comment->post_id = $request->post_id;
+        $comment->content = $request->content;
+        $comment->author = $request->author;
+        $comment->save();
 
         return response([
             'status' => 200,
@@ -51,16 +51,16 @@ class PostController extends Controller
     }
 
     /**
-     * Update data of specific post in database.
+     * Update data of specific comment in database.
      *
      * @param Request $request
-     * @param Post $id
+     * @param Comment $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function update(Request $request, Post $id)
+    public function update(Request $request, Comment $id)
     {
         $id->update([
-            'title' => $request->title,
+            'post_id' => $request->post_id,
             'content' => $request->content,
             'author' => $request->author
         ]);
@@ -72,14 +72,14 @@ class PostController extends Controller
     }
 
     /**
-     * Delete data of specific post.
+     * Delete data of specific comment.
      *
      * @param $id
      * @return void
      */
     public function delete($id)
     {
-        Post::where('id', $id)->delete();
+        Comment::where('id', $id)->delete();
 
         return response([
             'status' => 200,

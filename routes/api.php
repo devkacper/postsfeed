@@ -27,3 +27,13 @@ Route::group(['prefix' => 'post'], function() {
     Route::post('/update/{id}', [$c, 'update']);
     Route::delete('/delete/{id}', [$c, 'delete']);
 });
+
+Route::group(['prefix' => 'comment'], function() {
+
+    $c = \App\Http\Controllers\Api\CommentController::class;
+
+    Route::get('/{id}', [$c, 'show']);
+    Route::post('/store', [$c, 'store']);
+    Route::post('/update/{id}', [$c, 'update']);
+    Route::delete('/delete/{id}', [$c, 'delete']);
+});

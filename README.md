@@ -42,10 +42,18 @@ php artisan serve
 
 Endpointy obiektu Post:
 ```bash
-/api/post/{id} - zwraca dane posta o podanym id.
-/api/post/store - zapisuje post w bazie danych (parametry title, content, author). 
-/api/update/{id} - aktualizuje dane posta o wybranym id (parametry title, content, author).
-/api/delete/{id} - usuwa z bazy danych post o podanym id.
+/api/post/{id}    - zwraca dane posta o podanym id.
+/api/post/store   - zapisuje post w bazie danych (parametry title, content, author). 
+/api/update/{id}  - aktualizuje dane posta o wybranym id (parametry title, content, author).
+/api/delete/{id}  - usuwa z bazy danych post o podanym id.
+```
+
+Endpointy obiektu Comment:
+```bash
+/api/comment/{id}   - zwraca dane komentarza o podanym id.
+/api/comment/store  - zapisuje komentarz w bazie danych (parametry post_id, content, author). 
+/api/comment/{id}   - aktualizuje dane komentarza o wybranym id (parametry post_id, content, author).
+/api/comment/{id}   - usuwa z bazy danych komentarz o podanym id.
 ```
 
 
