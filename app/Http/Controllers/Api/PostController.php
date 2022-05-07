@@ -20,12 +20,12 @@ class PostController extends Controller
         return response([
             'status' => 200,
             'post' => [
-                'id' => $post->id,
-                'title' => $post->title,
-                'content' => $post->content,
-                'author' => $post->author,
-                'created_at' => $post->created_at,
-                'updated_at' => $post->created_at
+                'id'            => $post->id,
+                'title'         => $post->title,
+                'content'       => $post->content,
+                'author'        => $post->author,
+                'created_at'    => $post->created_at,
+                'updated_at'    => $post->created_at
             ]
         ]);
     }
@@ -38,15 +38,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->author = $request->author;
-        $post->save();
+        Post::create([
+            'title'     => $request->title,
+            'content'   => $request->content,
+            'author'    => $request->author
+        ]);
 
         return response([
-            'status' => 200,
-            'message' => __('alert.api.store-success')
+            'status'    => 200,
+            'message'   => __('alert.api.store-success')
         ]);
     }
 
@@ -57,17 +57,17 @@ class PostController extends Controller
      * @param Post $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function update(Request $request, Post $id)
+    public function update(Request $request, Post $post)
     {
-        $id->update([
-            'title' => $request->title,
-            'content' => $request->content,
-            'author' => $request->author
+        $post->update([
+            'title'     => $request->title,
+            'content'   => $request->content,
+            'author'    => $request->author
         ]);
 
         return response([
-            'status' => 200,
-            'message' => __('alert.api.update-success')
+            'status'    => 200,
+            'message'   => __('alert.api.update-success')
         ]);
     }
 
@@ -77,13 +77,13 @@ class PostController extends Controller
      * @param $id
      * @return void
      */
-    public function delete($id)
+    public function destroy($id)
     {
         Post::where('id', $id)->delete();
 
         return response([
-            'status' => 200,
-            'message' => __('alert.api.delete-success')
+            'status'    => 200,
+            'message'   => __('alert.api.delete-success')
         ]);
     }
 }

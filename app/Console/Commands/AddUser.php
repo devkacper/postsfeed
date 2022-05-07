@@ -38,10 +38,10 @@ class AddUser extends Command
      */
     public function handle()
     {
-        $user = new User();
-        $user->name = $this->argument('name');
-        $user->email = $this->argument('email');
-        $user->password = bcrypt($this->argument('password'));
-        $user->save();
+        User::create([
+            'name'      => $this->argument('name'),
+            'email'     => $this->argument('email'),
+            'password'  => bcrypt($this->argument('password')),
+        ]);
     }
 }

@@ -18,22 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'post'], function() {
-
-    $c = \App\Http\Controllers\Api\PostController::class;
-
-    Route::get('/{id}', [$c, 'show']);
-    Route::post('/store', [$c, 'store']);
-    Route::post('/update/{id}', [$c, 'update']);
-    Route::delete('/delete/{id}', [$c, 'delete']);
-});
-
-Route::group(['prefix' => 'comment'], function() {
-
-    $c = \App\Http\Controllers\Api\CommentController::class;
-
-    Route::get('/{id}', [$c, 'show']);
-    Route::post('/store', [$c, 'store']);
-    Route::post('/update/{id}', [$c, 'update']);
-    Route::delete('/delete/{id}', [$c, 'delete']);
-});
+Route::resource('post', '\App\Http\Controllers\Api\PostController');
+Route::resource('comment', '\App\Http\Controllers\Api\CommentController');

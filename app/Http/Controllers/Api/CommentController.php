@@ -20,12 +20,12 @@ class CommentController extends Controller
         return response([
             'status' => 200,
             'post' => [
-                'id' => $comment->id,
-                'post_id' => $comment->post_id,
-                'content' => $comment->content,
-                'author' => $comment->author,
-                'created_at' => $comment->created_at,
-                'updated_at' => $comment->created_at
+                'id'            => $comment->id,
+                'post_id'       => $comment->post_id,
+                'content'       => $comment->content,
+                'author'        => $comment->author,
+                'created_at'    => $comment->created_at,
+                'updated_at'    => $comment->created_at
             ]
         ]);
     }
@@ -38,15 +38,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $comment = new Comment();
-        $comment->post_id = $request->post_id;
-        $comment->content = $request->content;
-        $comment->author = $request->author;
-        $comment->save();
+        Comment::create([
+            'post_id' => $request->post_id,
+            'content' => $request->content,
+            'author'  => $request->author,
+        ]);
 
         return response([
-            'status' => 200,
-            'message' => __('alert.api.store-success')
+            'status'    => 200,
+            'message'   => __('alert.api.store-success')
         ]);
     }
 
@@ -57,17 +57,17 @@ class CommentController extends Controller
      * @param Comment $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $id)
+    public function update(Request $request, Comment $comment)
     {
-        $id->update([
-            'post_id' => $request->post_id,
-            'content' => $request->content,
-            'author' => $request->author
+        $comment->update([
+            'post_id'   => $request->post_id,
+            'content'   => $request->content,
+            'author'    => $request->author
         ]);
 
         return response([
-            'status' => 200,
-            'message' => __('alert.api.update-success')
+            'status'    => 200,
+            'message'   => __('alert.api.update-success')
         ]);
     }
 
@@ -77,13 +77,13 @@ class CommentController extends Controller
      * @param $id
      * @return void
      */
-    public function delete($id)
+    public function destroy($id)
     {
         Comment::where('id', $id)->delete();
 
         return response([
-            'status' => 200,
-            'message' => __('alert.api.delete-success')
+            'status'    => 200,
+            'message'   => __('alert.api.delete-success')
         ]);
     }
 }

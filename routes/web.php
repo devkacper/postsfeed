@@ -20,6 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->middleware('auth')->name('posts');
-Route::get('/comments', [\App\Http\Controllers\CommentController::class, 'index'])->middleware('auth')->name('comments');
-Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->middleware('auth')->name('users');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index']);
+    Route::get('/comments', [\App\Http\Controllers\CommentController::class, 'index']);
+    Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
+});
