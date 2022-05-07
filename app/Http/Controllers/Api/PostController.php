@@ -13,7 +13,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show($id) {
+    public function show($id)
+    {
         $post = Post::where('id', $id)->get()->first();
 
         return response([
@@ -35,7 +36,8 @@ class PostController extends Controller
      * @param Request $request
      * @return void
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
@@ -48,8 +50,9 @@ class PostController extends Controller
         ]);
     }
 
-    public function update(Request $request, Post $postId) {
-        $postId->update([
+    public function update(Request $request, Post $id)
+    {
+        $id->update([
             'title' => $request->title,
             'content' => $request->content,
             'author' => $request->author
@@ -67,7 +70,8 @@ class PostController extends Controller
      * @param $id
      * @return void
      */
-    public function delete($id) {
+    public function delete($id)
+    {
         Post::where('id', $id)->delete();
 
         return response([

@@ -24,6 +24,6 @@ Route::group(['prefix' => 'post'], function() {
 
     Route::get('/{id}', [$c, 'show']);
     Route::post('/store', [$c, 'store']);
-    Route::post('/update/{postId}', [$c, 'update']);
+    Route::post('/update/{id}', [$c, 'update']);
     Route::delete('/delete/{id}', [$c, 'delete']);
 });

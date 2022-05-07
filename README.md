@@ -38,10 +38,15 @@ php artisan storage:link
 php artisan serve
 ```
 
-# Weryfikacja funkcjonalności
+# Rest API
 
-// TODO
-
+Endpointy obiektu Post:
+```bash
+/api/post/{id} - zwraca dane posta o podanym id.
+/api/post/store - zapisuje post w bazie danych (parametry title, content, author). 
+/api/update/{id} - aktualizuje dane posta o wybranym id (parametry title, content, author).
+/api/delete/{id} - usuwa z bazy danych post o podanym id.
+```
 
 
 
