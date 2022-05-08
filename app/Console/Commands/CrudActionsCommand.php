@@ -39,7 +39,10 @@ class CrudActionsCommand extends Command
      */
     public function handle()
     {
-        $actions = CrudActions::where('created_at', '>=', Carbon::now()->subHour(13)->subMinutes(33) )->get();
+        $actions = CrudActions::where('object_type', 'App\Models\Post')
+            ->orWhere('object_type', 'App\Models\Comment')
+            ->where('created_at', '>=', Carbon::now()->subHour(13)->subMinutes(33))
+            ->get();
 
         $getActionCount = $actions->filter(function ($item) {
             return $item['action'] == 'GET';

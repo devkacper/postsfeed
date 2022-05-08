@@ -56,6 +56,14 @@ Endpointy obiektu Comment:
 /api/comment/{id}   - usuwa z bazy danych komentarz o podanym id.
 ```
 
+# Polecenie artisan
+
+Sprawdzenie ilości wykonanych akcji typu CRUD na zasobach Comment i Post.
+
+```bash
+php artisan crud:actions
+```
+
 
 
 
