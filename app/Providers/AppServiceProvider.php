@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Pagination\Paginator;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Observers\CommentObserver;
+use App\Observers\PostObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::useBootstrap();
+        Post::observe(PostObserver::class);
+        Comment::observe(CommentObserver::class);
     }
 }

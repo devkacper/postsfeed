@@ -79,7 +79,7 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        Comment::where('id', $id)->delete();
+        Comment::where('id', $id)->get()->each->delete();
 
         return response([
             'status'    => 200,
