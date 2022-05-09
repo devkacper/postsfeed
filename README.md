@@ -64,7 +64,7 @@ Dodawanie nowego użytkownika:
 php artisan add:user name email password
 ```
 
-Sprawdzenie ilości wykonanych akcji typu CRUD na zasobach Comment i Post.
+Sprawdzenie ilości wykonanych akcji typu CRUD na zasobach Comment i Post:
 
 ```bash
 php artisan crud:actions
