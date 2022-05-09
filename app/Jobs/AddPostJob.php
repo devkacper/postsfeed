@@ -9,7 +9,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use \Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 class AddPostJob implements ShouldQueue
 {
@@ -35,11 +34,11 @@ class AddPostJob implements ShouldQueue
         $faker = Factory::create();
 
         $request = Request::create('/api/post', 'POST', [
-            'title'     => $faker->title,
+            'title'     => $faker->text(40),
             'content'   => $faker->realText,
             'author'    => $faker->name,
         ]);
 
-        return Route::dispatch($request);
+        return app()->handle($request);
     }
 }

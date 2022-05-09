@@ -18,7 +18,7 @@ class PostTest extends TestCase
         $faker = Factory::create();
 
         $data = [
-            'title'     => $faker->text,
+            'title'     => $faker->text( 40),
             'content'   => $faker->realText,
             'author'    => $faker->name,
         ];

@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->job(new AddPostJob())->daily();
-        $schedule->job(new AddCommentJob())->cron('36 * * * *');
+        $schedule->job(new AddCommentJob())->cron('*/36 * * * *');
     }
 
     /**

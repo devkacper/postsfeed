@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Observers\CommentObserver;
 use App\Observers\PostObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
+
         Post::observe(PostObserver::class);
         Comment::observe(CommentObserver::class);
     }
